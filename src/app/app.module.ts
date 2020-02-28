@@ -16,11 +16,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { InfoComponent } from './components/info/info.component';
+import { GameComponent } from './components/game/game.component';
+import { RecordsComponent } from './components/records/records.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    InfoComponent,
+    GameComponent,
+    RecordsComponent
   ],
   imports: [
     BrowserModule,
