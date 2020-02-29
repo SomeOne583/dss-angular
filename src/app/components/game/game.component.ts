@@ -5,15 +5,16 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
+
 export class GameComponent implements OnInit {
 	maze = {
 		size: 17,
 		maze: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[2,2,2,2,1,0,1,0,1,0,1,0,1,0,0,2,2],[1,1,1,2,1,0,1,1,0,0,1,0,1,1,1,2,1],[1,0,0,2,1,0,0,0,1,0,1,0,0,0,1,2,1],[1,1,0,2,1,1,0,1,1,1,0,1,1,1,1,2,1],[1,2,2,2,1,0,0,0,1,0,0,0,0,0,0,2,1],[1,2,1,0,0,0,1,0,1,1,1,0,1,0,1,2,1],[1,2,0,0,1,2,2,2,1,2,2,2,2,0,2,2,1],[1,2,2,1,1,2,1,2,1,2,1,1,2,2,2,1,1],[1,0,2,2,2,2,1,2,2,2,1,0,1,0,0,0,1],[1,0,1,0,1,1,1,0,1,1,1,0,0,1,1,1,1],[1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1],[1,1,0,1,1,0,1,1,0,1,1,1,1,1,0,1,1],[1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1],[1,0,1,1,0,0,1,1,1,0,1,0,0,1,1,0,1],[1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]
 	};
 
-	p = 15;
-	cx;
-	cy;
+	m = 15;
+	cx: number;
+	cy: number;
 
 	@ViewChild('maze_canvas', { static: true })
 	canvas: ElementRef<HTMLCanvasElement>;
@@ -26,7 +27,7 @@ export class GameComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	draw(mode) {
+	draw(mode: number) {
 		if (mode === 1) {
 			this.ctx = this.canvas.nativeElement.getContext('2d');
 		} else if (mode === 2) {
@@ -46,7 +47,7 @@ export class GameComponent implements OnInit {
 						this.ctx.fillStyle = 'blue';
 					}
 				}
-				this.ctx.fillRect(this.cx * this.p, this.cy * this.p, this.p, this.p);
+				this.ctx.fillRect(this.cx * this.m, this.cy * this.m, this.m, this.m);
 				this.cx++;
 			});
 			this.cy++;
@@ -54,17 +55,21 @@ export class GameComponent implements OnInit {
 		});
 	}
 
-	s;
-	i;
+	initDate: number;
+	currDate: number;
+	time1: number;
+	time2: number;
 
-	reset() {
-		this.s = 0;
-	}
-
-	timer(mode) {
-		this.i = setInterval(() => {
-			this.s++;
-		}, 1000);
-		return (this.s%60 < 10) ? Math.floor(this.s/60) + ':0' + this.s%60 : Math.floor(this.s/60) + ':' + this.s%60;
+	reset(mode: number) {
+		if (mode === 0) {
+			this.initDate = Date.now();
+		} else if (mode === 1) {
+			this.currDate = Date.now()
+			this.time1 = Math.floor((this.currDate - this.initDate)/1000);
+			this.initDate = Date.now();
+		} else if (mode === 2) {
+			this.currDate = Date.now()
+			this.time2 = Math.floor((this.currDate - this.initDate)/1000);
+		}
 	}
 }
