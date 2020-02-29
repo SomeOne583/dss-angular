@@ -1,1 +1,30 @@
-<p>records works!</p>
+    <div class='container'>
+        <table mat-table [dataSource]='dataSource' matSort>
+            <ng-container matColumnDef='name'>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Nombre
+                </th>
+                <td mat-cell *matCellDef='let user'>
+                    {{ user.name }}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef='time1'>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Tiempo sin DSS
+                </th>
+                <td mat-cell *matCellDef='let user'>
+                    {{ timeToSeconds(user.time1) }}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef='time2'>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Tiempo con DSS
+                </th>
+                <td mat-cell *matCellDef='let user'>
+                    {{ timeToSeconds(user.time2) }}
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>

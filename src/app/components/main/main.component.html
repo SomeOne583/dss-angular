@@ -7,202 +7,20 @@
 			<mat-icon class='tab-icon'>info</mat-icon>
 			Información
 		</ng-template>
-		<mat-card>
-			<h1>
-				DSS - Sistemas de soporte de decisiones
-			</h1>
-			<mat-accordion>
-				<mat-expansion-panel>
-					<mat-expansion-panel-header>
-						<mat-panel-title>
-							¿Qué son?
-						</mat-panel-title>
-					</mat-expansion-panel-header>
-					<p>Un sistema de soporte de decisiones es un sistema de información cuyo fin es ayudar al usuario en la toma de decisiones, esto lo hace de múltiples maneras, como puede ser basandose en un modelo o en un conjunto de datos ya recopilados; todo esto a fin de optimizar las decisiones del consumidor del sistema</p>
-				</mat-expansion-panel>
-				<mat-expansion-panel>
-					<mat-expansion-panel-header>
-						<mat-panel-title>
-							Subtipos
-						</mat-panel-title>
-					</mat-expansion-panel-header>
-					<mat-accordion>
-						<mat-expansion-panel>
-							<mat-expansion-panel-header>
-								<mat-panel-title>
-									Data
-								</mat-panel-title>
-							</mat-expansion-panel-header>
-							<p>Este tipo de sistemas de soporte de decisiones se caracteriza por estar basado en datos recolectados, datos que el usuario le debe de proveer al sistema; entre más datos tenga disponibles el sistema mejor será su desempeño</p>
-						</mat-expansion-panel>
-						<mat-expansion-panel>
-							<mat-expansion-panel-header>
-								<mat-panel-title>
-									Documents
-								</mat-panel-title>
-							</mat-expansion-panel-header>
-							<p>Este tipo de sistemas de soporte de decisiones se basa en documentos, es decir, toma sus decisionesen base a documentos que le son entregados por el usuario, lo que le permite tener una comunicación más natural con el cliente</p>
-						</mat-expansion-panel>
-						<mat-expansion-panel>
-							<mat-expansion-panel-header>
-								<mat-panel-title>
-									Knowledge
-								</mat-panel-title>
-							</mat-expansion-panel-header>
-							<p>Este tipo de sistemas de soporte de decisiones se basa en conocimientos, lo que los hace decidir en base a sus capacidades de resolución de problemas, estos se podrían considerar un tipo de sistema experto</p>
-						</mat-expansion-panel>
-						<mat-expansion-panel>
-							<mat-expansion-panel-header>
-								<mat-panel-title>
-									Models
-								</mat-panel-title>
-							</mat-expansion-panel-header>
-							<p>Este tipo de sistemas de soporte de decisiones se basa en el uso de modelos, modelos que fueron diseñados para la optimización de detrminadas series de procesos; por lo tanto, este subtipo depende totalmente de la fiabilidad del modelo</p>
-						</mat-expansion-panel>
-					</mat-accordion>
-				</mat-expansion-panel>
-				<mat-expansion-panel>
-					<mat-expansion-panel-header>
-						<mat-panel-title>
-							Funcionalidades
-						</mat-panel-title>
-					</mat-expansion-panel-header>
-					<mat-list>
-						<mat-list-item>
-							<mat-icon matListIcon>
-								arrow_right
-							</mat-icon>
-							Recopila y analiza datos para realizar un informe completo
-						</mat-list-item>
-						<mat-list-item>
-							<mat-icon matListIcon>
-								arrow_right
-							</mat-icon>
-							Se puede automatizar a fin de reducir el trabajo del usuario
-						</mat-list-item>
-						<mat-list-item>
-							<mat-icon matListIcon>
-								arrow_right
-							</mat-icon>
-							Se puede adaptar a las distintas situaciones, todo en base al usuario y sus requerimientos
-						</mat-list-item>
-					</mat-list>
-				</mat-expansion-panel>
-				<mat-expansion-panel>
-					<mat-expansion-panel-header>
-						<mat-panel-title>
-							¿Quién los hizo?
-						</mat-panel-title>
-					</mat-expansion-panel-header>
-					<mat-accordion>
-						<mat-expansion-panel>
-							<mat-expansion-panel-header>
-								<mat-panel-title>
-									Michael Scott Morton
-								</mat-panel-title>
-							</mat-expansion-panel-header>
-							<p>Elaboró un estudio que consistió en construir, implementar y probar un sistema de soporte de decisiones de gestión, estando basado en modelos. En 1966 estudió como las computadoras y los modelos analíticos podrían ayudar a los gerentes a tomar decisiones y realizó un experimento en el que utilizaron un sistema de decisión de gestión (MDS)</p>
-						</mat-expansion-panel>
-						<mat-expansion-panel>
-							<mat-expansion-panel-header>
-								<mat-panel-title>
-									George Dantzig
-								</mat-panel-title>
-							</mat-expansion-panel-header>
-							<p>Inicio con la implementación de la porgramación lineal, lo que fue de suma importancia para el posterior desarrollo de los sistemasde soporte de decisiones</p>
-						</mat-expansion-panel>
-						<mat-expansion-panel>
-							<mat-expansion-panel-header>
-								<mat-panel-title>
-									Douglas Engelbart
-								</mat-panel-title>
-							</mat-expansion-panel-header>
-						</mat-expansion-panel>
-					</mat-accordion>
-				</mat-expansion-panel>
-			</mat-accordion>
-		</mat-card>
+		<app-info></app-info>
 	</mat-tab>
 	<mat-tab>
 		<ng-template mat-tab-label>
 			<mat-icon class='tab-icon'>games</mat-icon>
 			Juego
 		</ng-template>
-		<mat-card>
-			<mat-horizontal-stepper>
-				<mat-step editable='false'>
-					<ng-template matStepLabel>
-						Registrate
-					</ng-template>
-					<p>Registra tu nombre, esto para poder guardarlo en el registro de tiempos</p>
-					<form>
-						<mat-form-field>
-							<mat-label>
-								Nombre
-							</mat-label>
-							<input matInput placeholder="Nombre" #name>
-							<mat-hint>Por favor usa tu nombre</mat-hint>
-						</mat-form-field>
-					</form>
-					<button mat-button matStepperNext>Continuar</button>
-				</mat-step>
-				<mat-step editable='false'>
-					<ng-template matStepLabel>
-						Laberinto 1
-					</ng-template>
-					<p> {{ name.value  }} </p>
-					<button mat-button matStepperNext>Continuar</button>
-				</mat-step>
-				<mat-step editable='false'>
-					<ng-template matStepLabel>
-						Laberinto 2
-					</ng-template>
-					<p>Estas en el paso 3</p>
-					<button mat-button matStepperNext>Finalizar</button>
-				</mat-step>
-				<mat-step editable='false'>
-					<ng-template matStepLabel>
-						Ve tus resultados
-					</ng-template>
-					<p>Estas en el paso 4</p>
-				</mat-step>
-			</mat-horizontal-stepper>
-		</mat-card>
+		<app-game></app-game>
 	</mat-tab>
 	<mat-tab>
 		<ng-template mat-tab-label>
 			<mat-icon class='tab-icon'>view_list</mat-icon>
 			Records
 		</ng-template>
-		<div class='container'>
-			<table mat-table [dataSource]='dataSource' matSort>
-				<ng-container matColumnDef='name'>
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>
-						Nombre
-					</th>
-					<td mat-cell *matCellDef='let user'>
-						{{ user.name }}
-					</td>
-				</ng-container>
-				<ng-container matColumnDef='time1'>
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>
-						Tiempo sin DSS
-					</th>
-					<td mat-cell *matCellDef='let user'>
-						{{ timeToSeconds(user.time1) }}
-					</td>
-				</ng-container>
-				<ng-container matColumnDef='time2'>
-					<th mat-header-cell *matHeaderCellDef mat-sort-header>
-						Tiempo con DSS
-					</th>
-					<td mat-cell *matCellDef='let user'>
-						{{ timeToSeconds(user.time2) }}
-					</td>
-				</ng-container>
-				<tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-				<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-			</table>
-		</div>
+		<app-records></app-records>
 	</mat-tab>
 </mat-tab-group>
