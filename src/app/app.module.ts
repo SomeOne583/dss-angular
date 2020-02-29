@@ -19,6 +19,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { InfoComponent } from './components/info/info.component';
 import { GameComponent } from './components/game/game.component';
 import { RecordsComponent } from './components/records/records.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { RecordsComponent } from './components/records/records.component';
     MatButtonModule,
     MatToolbarModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

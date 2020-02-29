@@ -35,7 +35,7 @@
                 <ng-template matStepLabel>
                     Laberinto 2
                 </ng-template>
-		<div style='text-align: center'>
+        <div style='text-align: center'>
 			<canvas #maze2_canvas [width]="maze.size * m" [height]="maze.size * m">
 			</canvas>
 			{{ draw(2) }}
@@ -48,6 +48,7 @@
                 <ng-template matStepLabel>
                     Ve tus resultados
                 </ng-template>
+                <p>Nombre: {{ name.value }}, Tiempo 1: {{ time1 }}, Tiempo 2: {{ time2 }}</p>
             </mat-step>
         </mat-horizontal-stepper>
     </mat-card>
