@@ -56,13 +56,7 @@ export class RecordsComponent implements OnInit {
   
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-	timeToSeconds(t) {
-		/* if (t%60 < 10) {
-			return Math.floor(t/60) + ':0' + t%60;
-		} else {
-			return Math.floor(t/60) + ':' + t%60;
-		} */
-
+	timeToSeconds(t: number) {
 	       return (t%60 < 10) ? Math.floor(t/60) + ':0' + t%60 : Math.floor(t/60) + ':' + t%60;
 	}
 

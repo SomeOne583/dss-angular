@@ -14,41 +14,46 @@
                         <mat-hint>Por favor usa tu nombre</mat-hint>
                     </mat-form-field>
                 </form>
-		<div style='text-align: right'>
-                	<button mat-button matStepperNext (click)="reset(0)">Continuar</button>
-		</div>
+                <div style='text-align: right'>
+                    <button mat-button matStepperNext (click)="reset(0)" (click)="draw(1)">Continuar</button>
+                </div>
             </mat-step>
             <mat-step editable='false'>
                 <ng-template matStepLabel>
                     Laberinto 1
                 </ng-template>
-        <div style='text-align: center'>
-			<canvas #maze_canvas [width]="maze.size * m" [height]="maze.size * m">
-            </canvas>
-            {{ draw(1) }}
-		</div>
-		<div style='text-align: right'>
-			<button mat-button matStepperNext (click)="reset(1)">Continuar</button>
-		</div>
+                <div style='text-align: center'>
+			        <canvas #maze_canvas [width]="maze.size * m" [height]="maze.size * m">
+                    </canvas>
+		        </div>
+		        <div style='text-align: right'>
+			        <button mat-button matStepperNext (click)="reset(1)" (click)="draw(2)">Continuar</button>
+		        </div>
+                <!-- {{ draw(1) }} -->
             </mat-step>
             <mat-step editable='false'>
                 <ng-template matStepLabel>
                     Laberinto 2
                 </ng-template>
-        <div style='text-align: center'>
-			<canvas #maze2_canvas [width]="maze.size * m" [height]="maze.size * m">
-			</canvas>
-			{{ draw(2) }}
-		</div>
-		<div style='text-align: right'>
-			<button mat-button matStepperNext (click)="reset(2)">Finalizar</button>
-		</div>
+                <div style='text-align: center'>
+			        <canvas #maze2_canvas [width]="maze.size * m" [height]="maze.size * m">
+			        </canvas>
+		        </div>
+		        <div style='text-align: right'>
+			        <button mat-button matStepperNext (click)="reset(2)">Finalizar</button>
+		        </div>
+                <!-- {{ draw(2) }} -->
             </mat-step>
             <mat-step editable='false'>
                 <ng-template matStepLabel>
                     Ve tus resultados
                 </ng-template>
-                <p>Nombre: {{ name.value }}, Tiempo 1: {{ time1 }}, Tiempo 2: {{ time2 }}</p>
+                <mat-card>
+                    <h1>
+                        ¡Felicidades {{ name.value }}!, lo lograste
+                    </h1>
+                    <p>Estos son tus resutados<br>Tiempo sin DSS: {{ timeToSeconds(time1) }}<br>Tiempo con DSS: {{ timeToSeconds(time2) }}</p>
+                </mat-card>
             </mat-step>
         </mat-horizontal-stepper>
     </mat-card>
