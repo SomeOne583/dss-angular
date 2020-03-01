@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { UsersService } from '../../services/users.service';
 
 export interface User {
 	name: string;
@@ -8,61 +9,38 @@ export interface User {
 	time2: number;
 }
 
-const users: User[] = [
-	{ name: 'Nombre 1', time1: 121, time2: 40 },
-	{ name: 'Nombre 2', time1: 123, time2: 38 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 },
-	{ name: 'Nombre 3', time1: 99, time2: 22 }
-];
-
 @Component({
   selector: 'app-records',
   templateUrl: './records.component.html',
   styleUrls: ['./records.component.css']
 })
 export class RecordsComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'time1', 'time2'];
-  dataSource = new MatTableDataSource(users);
-  
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
-
+	
+	displayedColumns: string[] = ['name', 'time1', 'time2'];
+	
+	@ViewChild(MatSort, {static: true}) sort: MatSort;
+	
 	timeToSeconds(t: number) {
-	       return (t%60 < 10) ? Math.floor(t/60) + ':0' + t%60 : Math.floor(t/60) + ':' + t%60;
+		return (t%60 < 10) ? Math.floor(t/60) + ':0' + t%60 : Math.floor(t/60) + ':' + t%60;
 	}
-
-  constructor() { }
-
-  ngOnInit(): void {
-    this.dataSource.sort = this.sort;
-  }
+	users: any;
+	dataSource: MatTableDataSource<unknown>;
+	
+	genUsers() {
+		this.usersService.getUsers()
+		.subscribe(
+			(data) => {
+				this.users = data;
+				this.dataSource = new MatTableDataSource(this.users);
+				this.dataSource.sort = this.sort;
+			}
+		);
+	}
+		
+	constructor(private usersService: UsersService) {
+		this.genUsers();
+	}
+	  
+	ngOnInit(): void {
+  	}
 }

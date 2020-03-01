@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GeneratorService } from '../../services/generator.service';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-game',
@@ -27,7 +28,7 @@ export class GameComponent implements OnInit {
 
 	maze: { maze: any; size: number; };
 	// private generatorService: GeneratorService;
-	constructor(private generatorService: GeneratorService) {
+	constructor(private generatorService: GeneratorService, private usersService: UsersService) {
 		this.genMaze();
 	}
 	
@@ -40,6 +41,9 @@ export class GameComponent implements OnInit {
 	
 	@ViewChild('maze2_canvas', { static: true })
 	canvas2: ElementRef<HTMLCanvasElement>;
+
+	@ViewChild('name', { static: true })
+	name: ElementRef<HTMLInputElement>;
 	
 	private ctx: CanvasRenderingContext2D;
 	
@@ -117,6 +121,7 @@ export class GameComponent implements OnInit {
 	currDate: number;
 	time1: number;
 	time2: number;
+	user: object;
 
 	reset(mode: number) {
 		if (mode === 0) {
@@ -128,7 +133,12 @@ export class GameComponent implements OnInit {
 		} else if (mode === 2) {
 			this.currDate = Date.now()
 			this.time2 = Math.floor((this.currDate - this.initDate)/1000);
-			/* Aquí se hará el POST para guardar los resultados */
+			this.user = {
+				"name": this.name.nativeElement.value,
+				"time1": this.time1,
+				"time2": this.time2
+			}
+			this.usersService.postUsers(this.user).subscribe();
 		}
 	}
 
