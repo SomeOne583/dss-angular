@@ -11,7 +11,7 @@
 			<app-info></app-info>
 		</ng-template>
 	</mat-tab>
-	<mat-tab>
+	<mat-tab *ngIf="isDesktop">
 		<ng-template mat-tab-label>
 			<mat-icon class='tab-icon'>games</mat-icon>
 			Juego

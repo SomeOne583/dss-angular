@@ -20,6 +20,7 @@ import { InfoComponent } from './components/info/info.component';
 import { GameComponent } from './components/game/game.component';
 import { RecordsComponent } from './components/records/records.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatToolbarModule,
     MatTableModule,
     MatSortModule,
-    HttpClientModule
+    HttpClientModule,
+    DeviceDetectorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
