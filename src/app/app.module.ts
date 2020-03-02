@@ -48,7 +48,7 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
     HttpClientModule,
     DeviceDetectorModule
   ],
-  providers: [],
+  providers: [DeviceDetectorModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
