@@ -45,8 +45,7 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
     MatToolbarModule,
     MatTableModule,
     MatSortModule,
-    HttpClientModule,
-    DeviceDetectorModule
+    HttpClientModule
   ],
   providers: [DeviceDetectorModule],
   bootstrap: [AppComponent]
