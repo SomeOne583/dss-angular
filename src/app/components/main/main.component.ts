@@ -8,16 +8,10 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 })
 export class MainComponent implements OnInit {
   isDesktop: boolean;
-  indx: number;
+  indx = 1;
   
   constructor(private deviceDetectorService: DeviceDetectorService) {
     this.isDesktop = this.deviceDetectorService.isDesktop();
-    // this.isDesktop == true ? this.indx = 1 : this.indx = 0;
-    if (this.isDesktop == true) {
-      this.indx = 1;
-    } else {
-      this.indx = 0;
-    }
   }
 	ngOnInit() {}
 }
