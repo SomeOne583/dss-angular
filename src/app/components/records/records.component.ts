@@ -3,12 +3,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { UsersService } from '../../services/users.service';
 
-export interface User {
-	name: string;
-	time1: number;
-	time2: number;
-}
-
 @Component({
   selector: 'app-records',
   templateUrl: './records.component.html',
@@ -41,6 +35,5 @@ export class RecordsComponent implements OnInit {
 		this.genUsers();
 	}
 	  
-	ngOnInit(): void {
-  	}
+	ngOnInit(): void {}
 }

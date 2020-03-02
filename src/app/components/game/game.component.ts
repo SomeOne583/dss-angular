@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GeneratorService } from '../../services/generator.service';
 import { UsersService } from '../../services/users.service';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-game',
@@ -9,15 +10,12 @@ import { UsersService } from '../../services/users.service';
 })
 
 export class GameComponent implements OnInit {
-	// maze = {
-	// 	size: 17,
-	// 	maze: [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[2,2,2,2,1,0,1,0,1,0,1,0,1,0,0,2,2],[1,1,1,2,1,0,1,1,0,0,1,0,1,1,1,2,1],[1,0,0,2,1,0,0,0,1,0,1,0,0,0,1,2,1],[1,1,0,2,1,1,0,1,1,1,0,1,1,1,1,2,1],[1,2,2,2,1,0,0,0,1,0,0,0,0,0,0,2,1],[1,2,1,0,0,0,1,0,1,1,1,0,1,0,1,2,1],[1,2,0,0,1,2,2,2,1,2,2,2,2,0,2,2,1],[1,2,2,1,1,2,1,2,1,2,1,1,2,2,2,1,1],[1,0,2,2,2,2,1,2,2,2,1,0,1,0,0,0,1],[1,0,1,0,1,1,1,0,1,1,1,0,0,1,1,1,1],[1,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1],[1,1,0,1,1,0,1,1,0,1,1,1,1,1,0,1,1],[1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,1],[1,0,1,1,0,0,1,1,1,0,1,0,0,1,1,0,1],[1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1],[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]
-	// };
+	ngOnInit(): void {}
+
 	genMaze() {
 		this.generatorService.getMaze()
 		.subscribe(
 			(data) => {
-				// console.log(data['size']);
 				this.maze = {
 					size: data['size'],
 					maze: data['maze']
@@ -27,7 +25,6 @@ export class GameComponent implements OnInit {
 	}
 
 	maze: { maze: any; size: number; };
-	// private generatorService: GeneratorService;
 	constructor(private generatorService: GeneratorService, private usersService: UsersService) {
 		this.genMaze();
 	}
@@ -44,11 +41,11 @@ export class GameComponent implements OnInit {
 
 	@ViewChild('name', { static: true })
 	name: ElementRef<HTMLInputElement>;
+
+	@ViewChild('stepper')
+	stepper: MatStepper;
 	
 	private ctx: CanvasRenderingContext2D;
-	
-	ngOnInit() {
-	}
 	
 	drawing = false;
 	c: ElementRef<HTMLCanvasElement>;
@@ -74,11 +71,6 @@ export class GameComponent implements OnInit {
 	}
 	
 	draw(mode: number) {
-		// if (mode === 1) {
-		// 	this.ctx = this.canvas.nativeElement.getContext('2d');
-		// } else if (mode === 2) {
-		// 	this.ctx = this.canvas2.nativeElement.getContext('2d');
-		// }
 		if (mode === 1) {
 			this.c = this.canvas;
 		} else if (mode === 2) {
@@ -100,20 +92,20 @@ export class GameComponent implements OnInit {
 					}
 				}
 				this.ctx.fillRect(this.cx * this.m, this.cy * this.m, this.m, this.m);
-				this.ctx.fillStyle = "#00FF00";
 				this.cx++;
 			});
 			this.cy++;
 			this.cx = 0;
 		});
+		this.ctx.fillStyle = "#00FF00";
 		this.c.nativeElement.addEventListener('mousemove', (e) => {
-			this.drawLine((e.clientX - this.c.nativeElement.offsetLeft), (e.clientY - this.c.nativeElement.offsetTop * 2.3), 'move');
+			this.drawLine((e.clientX - this.c.nativeElement.offsetLeft * 1.01), (e.clientY - this.c.nativeElement.offsetTop * 2.3), 'move');
 		});
 		this.c.nativeElement.addEventListener('mousedown', (e) => {
-			this.drawLine((e.clientX - this.c.nativeElement.offsetLeft), (e.clientY - this.c.nativeElement.offsetTop * 2.3), 'down');
+			this.drawLine((e.clientX - this.c.nativeElement.offsetLeft * 1.01), (e.clientY - this.c.nativeElement.offsetTop * 2.3), 'down');
 		});
 		this.c.nativeElement.addEventListener('mouseup', (e) => {
-			this.drawLine((e.clientX - this.c.nativeElement.offsetLeft), (e.clientY - this.c.nativeElement.offsetTop * 2.3), 'up');
+			this.drawLine((e.clientX - this.c.nativeElement.offsetLeft * 1.01), (e.clientY - this.c.nativeElement.offsetTop * 2.3), 'up');
 		});
 	}
 
@@ -133,6 +125,9 @@ export class GameComponent implements OnInit {
 		} else if (mode === 2) {
 			this.currDate = Date.now()
 			this.time2 = Math.floor((this.currDate - this.initDate)/1000);
+			if (this.name.nativeElement.value === "") {
+				this.name.nativeElement.value = "Anónimo";
+			}
 			this.user = {
 				"name": this.name.nativeElement.value,
 				"time1": this.time1,
@@ -140,6 +135,11 @@ export class GameComponent implements OnInit {
 			}
 			this.usersService.postUsers(this.user).subscribe();
 		}
+	}
+
+	nextClick(event: any) {
+		this.stepper.selected.completed = true;
+		this.stepper.next();
 	}
 
 	timeToSeconds(t: number) {
