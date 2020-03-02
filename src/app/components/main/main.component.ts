@@ -7,7 +7,10 @@ import { DeviceDetectorService } from 'ngx-device-detector';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  constructor(private deviceDetectorService: DeviceDetectorService) {}
-  isDesktop = this.deviceDetectorService.isDesktop();
+  isDesktop: boolean;
+  
+  constructor(private deviceDetectorService: DeviceDetectorService) {
+    this.isDesktop = this.deviceDetectorService.isDesktop();
+  }
 	ngOnInit() {}
 }
