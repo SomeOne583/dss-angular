@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UsersService {
-  url = 'http://127.0.0.1:3000/api/v1/users'
+  url = 'https://dss-api.herokuapp.com/api/v1/users'
   
   httpOptions = {
     headers: new HttpHeaders("Authorization: Token token=f98e847a-03bc-43d3-8dfa-1f192902b15a")
