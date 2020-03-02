@@ -11,7 +11,6 @@ export class MainComponent implements OnInit {
   
   constructor(private deviceDetectorService: DeviceDetectorService) {
     this.isDesktop = this.deviceDetectorService.isDesktop();
-    console.log(this.isDesktop);
   }
 	ngOnInit() {}
 }
