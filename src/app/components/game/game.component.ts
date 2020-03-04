@@ -29,7 +29,7 @@ export class GameComponent implements OnInit {
 		this.genMaze();
 	}
 	
-	m = 10;
+	m = 8;
 	cx: number;
 	cy: number;
 
