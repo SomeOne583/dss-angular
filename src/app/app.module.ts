@@ -21,6 +21,7 @@ import { GameComponent } from './components/game/game.component';
 import { RecordsComponent } from './components/records/records.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { ClaseComponent } from './components/clase/clase.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DeviceDetectorService } from 'ngx-device-detector';
     MainComponent,
     InfoComponent,
     GameComponent,
-    RecordsComponent
+    RecordsComponent,
+    ClaseComponent
   ],
   imports: [
     BrowserModule,
